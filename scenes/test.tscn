@@ -57,6 +57,8 @@ position = Vector2(728, 417)
 
 [node name="PlayerAlive" parent="." instance=ExtResource("1_2f3dp")]
 position = Vector2(565, 489)
+collision_layer = 3
+collision_mask = 3
 
 [node name="PlayerGhost" parent="." instance=ExtResource("3_yn4fl")]
 position = Vector2(396, 418)

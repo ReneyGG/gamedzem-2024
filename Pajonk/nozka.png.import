@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbvq13qx2nji8"
-path="res://.godot/imported/tuowpajak.png-236d3a84d40fe2245bbe4ecd9ace1366.ctex"
+uid="uid://cef4e7ehgy8lv"
+path="res://.godot/imported/nozka.png-0d0f52f9c3f16240f8e16d6e933215fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tuowpajak.png"
-dest_files=["res://.godot/imported/tuowpajak.png-236d3a84d40fe2245bbe4ecd9ace1366.ctex"]
+source_file="res://Pajonk/nozka.png"
+dest_files=["res://.godot/imported/nozka.png-0d0f52f9c3f16240f8e16d6e933215fe.ctex"]
 
 [params]
 

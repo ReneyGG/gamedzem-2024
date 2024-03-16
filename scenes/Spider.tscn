@@ -1,31 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://fuixwvel2xmw"]
+[gd_scene load_steps=6 format=3 uid="uid://fuixwvel2xmw"]
 
 [ext_resource type="Script" path="res://scripts/Spider.gd" id="1_vij64"]
-[ext_resource type="Texture2D" uid="uid://cp6jwl5n8bw87" path="res://icon.svg" id="2_b2ix7"]
-[ext_resource type="Texture2D" uid="uid://cbvq13qx2nji8" path="res://tuowpajak.png" id="2_pe6bg"]
+[ext_resource type="Texture2D" uid="uid://cbvq13qx2nji8" path="res://Pajonk/tuowpajak.png" id="2_pe6bg"]
+[ext_resource type="Texture2D" uid="uid://d282iljy42a0i" path="res://Pajonk/nozka2.png" id="3_x55re"]
+[ext_resource type="Texture2D" uid="uid://cef4e7ehgy8lv" path="res://Pajonk/nozka.png" id="4_33em5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_woxgo"]
-size = Vector2(1451.41, 548.726)
+size = Vector2(1929.19, 480.384)
 
 [node name="Spider" type="CharacterBody2D"]
-position = Vector2(795, 317)
+position = Vector2(954, 366)
 script = ExtResource("1_vij64")
 
 [node name="SpiderBody" type="Sprite2D" parent="."]
-position = Vector2(2.99997, 172)
+position = Vector2(5.00003, 251)
 rotation = -6.28319
-scale = Vector2(4.32057, 1.1448)
+scale = Vector2(2.48754, 0.728695)
 texture = ExtResource("2_pe6bg")
 
-[node name="SpiderLeg" type="CharacterBody2D" parent="SpiderBody"]
+[node name="SpiderLegs" type="CharacterBody2D" parent="SpiderBody"]
 position = Vector2(-0.496719, -59.5507)
 scale = Vector2(0.0827885, 0.151529)
 
-[node name="Icon" type="Sprite2D" parent="SpiderBody/SpiderLeg"]
+[node name="Icon" type="Sprite2D" parent="SpiderBody/SpiderLegs"]
 z_index = 1
-position = Vector2(-2008.38, -1305.29)
-scale = Vector2(5.19319, 26.1565)
-texture = ExtResource("2_b2ix7")
+position = Vector2(-2373.33, -331.538)
+rotation = 0.16057
+scale = Vector2(7.31561, 9.03231)
+texture = ExtResource("3_x55re")
+
+[node name="Icon2" type="Sprite2D" parent="SpiderBody/SpiderLegs"]
+z_index = 1
+position = Vector2(2370.77, -231.877)
+rotation = -0.174533
+scale = Vector2(6.94078, 9.82956)
+texture = ExtResource("4_33em5")
 
 [node name="Area2D" type="Area2D" parent="SpiderBody"]
 position = Vector2(-0.694168, -160.727)
@@ -34,7 +43,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderBody/Area2D"]
-position = Vector2(7.76343, -151.776)
+position = Vector2(-4.7561, -191.066)
 scale = Vector2(1.03528, 1.02996)
 shape = SubResource("RectangleShape2D_woxgo")
 

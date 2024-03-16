@@ -65,6 +65,4 @@ position = Vector2(396, 418)
 acceleration = 110
 
 [node name="Spider" parent="." instance=ExtResource("6_oode5")]
-position = Vector2(571, 881)
-offset = Vector2(0, -800)
-duration = 20
+position = Vector2(526, 845)

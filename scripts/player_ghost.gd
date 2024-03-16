@@ -20,7 +20,8 @@ var state_machine
 var current
 
 func _ready():
-	camera = get_parent().get_node("Camera2D")
+	pass
+	#camera = get_parent().get_node("Camera2D")
 	#camera = get_parent().find_node("Camera2D")
 	#state_machine = $AnimationTree["parameters/playback"]
 	#state_machine.start("idle")
@@ -59,15 +60,15 @@ func _physics_process(_delta):
 			jump_counter += 1
 			cayote_counter = 1
 	
-	if Input.is_action_pressed("ghost_right"):
+	if Input.is_action_pressed("alive_right"):
 		velocity.x += acceleration
 		sprite.flip_h = false
-	if Input.is_action_pressed("ghost_left"):
+	if Input.is_action_pressed("alive_left"):
 		velocity.x -= acceleration
 		sprite.flip_h = true
-	if Input.is_action_pressed("ghost_up"):
+	if Input.is_action_pressed("alive_up"):
 		velocity.y -= acceleration
-	if Input.is_action_pressed("ghost_down"):
+	if Input.is_action_pressed("alive_down"):
 		velocity.y += acceleration
 	
 	velocity.x = lerp(velocity.x,0.0,0.1)

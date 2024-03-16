@@ -8,9 +8,10 @@ extends CharacterBody2D
 @export var acceleration := 220
 @export var jump_buffer_time := 5
 @export var cayote_time := 5
+@export var camera_path : NodePath
 
-var landed := false
 var camera
+var landed := false
 var ui_on := false
 var jump_counter := 0
 var jump_buffer_counter := 0
@@ -18,9 +19,13 @@ var cayote_counter := 0
 var max_fall_speed := 2000
 var state_machine
 var current
+var ghost_mode := false
+var ghost_node = null
 
 func _ready():
-	camera = get_parent().get_node("Camera2D")
+	camera = get_node(camera_path)
+	camera.follow = self
+	#camera = get_parent().get_node("Camera2D")
 	#camera = get_parent().find_node("Camera2D")
 	#state_machine = $AnimationTree["parameters/playback"]
 	#state_machine.start("idle")
@@ -64,14 +69,14 @@ func _physics_process(_delta):
 	if velocity.y > max_fall_speed:
 		velocity.y = max_fall_speed
 	
-	if Input.is_action_pressed("alive_right"):
+	if Input.is_action_pressed("alive_right") and not ghost_mode:
 		velocity.x += acceleration
 		sprite.flip_h = false
 		if is_on_floor():
 			pass
 			#state_machine.travel("run")
 		
-	elif Input.is_action_pressed("alive_left"):
+	elif Input.is_action_pressed("alive_left") and not ghost_mode:
 		velocity.x -= acceleration
 		sprite.flip_h = true
 		if is_on_floor():
@@ -86,7 +91,13 @@ func _physics_process(_delta):
 			#state_machine.travel("idle")
 		velocity.x = lerp(velocity.x,0.0,0.3)
 	
-	if Input.is_action_just_pressed("alive_up"):
+	if Input.is_action_just_pressed("mecha"):
+		if ghost_mode:
+			get_parent().delete_ghost()
+		else:
+			get_parent().spawn_ghost()
+	
+	if Input.is_action_just_pressed("alive_up") and not ghost_mode:
 		jump_buffer_counter = jump_buffer_time
 	
 	if jump_buffer_counter > 0:
@@ -103,7 +114,7 @@ func _physics_process(_delta):
 		sprite.scale = Vector2(0.7, 1.3)
 		#state_machine.travel("jump")
 	
-	if Input.is_action_just_released("alive_up"):
+	if Input.is_action_just_released("alive_up") and not ghost_mode:
 		if velocity.y < 0:
 			velocity.y += 600
 	

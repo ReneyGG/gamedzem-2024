@@ -68,6 +68,8 @@ func _on_area_2d_mouse_exited():
 
 
 func _ready():
+	randomize()
+	$Timer.start()
 	camera = get_node(camera_path)
 	camera.follow = self
 	#camera = get_parent().get_node("Camera2D")
@@ -84,8 +86,8 @@ func _physics_process(_delta):
 	if ui_on:
 		return
 	
-	if progress > 0.0:
-		progress -= 0.1
+	#if progress > 0.0:
+		#progress -= 0.1
 	
 	#if is_on_floor() and current == "run":
 		#$DustTrailRun.emitting = true
@@ -96,7 +98,7 @@ func _physics_process(_delta):
 		if landed:
 			landed = false
 			#$DustTrail.restart()
-			#$Land.pitch_scale = rand_range(0.8,1.2)
+			$Land.pitch_scale = randf_range(0.8,1.2)
 			#$Land.play()
 		cayote_counter = cayote_time
 		jump_counter = 0
@@ -152,10 +154,10 @@ func _physics_process(_delta):
 		jump_buffer_counter -= 1
 	
 	if jump_buffer_counter > 0 and cayote_counter > 0:
-		#if is_on_floor() or is_on_wall():
+		if is_on_floor():
 			#$DustTrail.restart()
-			#$Jump.pitch_scale = rand_range(0.8,1.2)
-			#$Jump.play()
+			$Jump.pitch_scale = randf_range(0.8,1.2)
+			$Jump.play()
 		velocity.y = -jump_force
 		jump_buffer_counter = 0
 		cayote_counter = 0
@@ -196,3 +198,8 @@ func frame_freeze(timeScale, duration):
 
 func _on_Freeze_timeout():
 	Engine.time_scale = 1.0
+
+func _on_timer_timeout():
+	if state == ROTATING:
+		$Wind.pitch_scale = randf_range(0.7,1.4)
+		$Wind.play()

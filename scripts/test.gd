@@ -7,12 +7,16 @@ var range = preload("res://scenes/range.tscn")
 var ghost = preload("res://scenes/player_ghost.tscn")
 
 func _ready():
+	$Sfx/Ambient.play()
 	player_alive = get_node("PlayerAlive")
 
 func _physics_process(delta):
 	get_node("Camera2D/CanvasLayer/Control/ProgressBar").value = player_alive.progress
+	
+	#$Foreground.position.x += (player_alive.global_position.x*delta*2)-$Foreground.position.x
 
 func delete_ghost():
+	$Sfx/Opetanie.play()
 	#get_node("Camera2D/Rotating").hide()
 	for i in lines.get_children():
 		i.queue_free()
@@ -23,6 +27,7 @@ func delete_ghost():
 	get_node("PlayerGhost").queue_free()
 
 func spawn_ghost():
+	$Sfx/OdOpetanie.play()
 	#get_node("Camera2D/Rotating").show()
 	player_alive.ghost_mode = true
 	var ghost_node = ghost.instantiate()

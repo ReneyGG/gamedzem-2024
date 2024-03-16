@@ -1,0 +1,68 @@
+[gd_scene load_steps=13 format=3 uid="uid://jww6g204k2nl"]
+
+[ext_resource type="Script" path="res://scripts/spider.gd" id="1_he8po"]
+[ext_resource type="Texture2D" uid="uid://b7ng2l0816jug" path="res://assets/spider/dol.png" id="2_7owrk"]
+[ext_resource type="Texture2D" uid="uid://b3tseg1onx202" path="res://assets/spider/dolprawa.png" id="3_bfwrg"]
+[ext_resource type="Texture2D" uid="uid://c0vymjict3jah" path="res://assets/spider/nozka2.png" id="4_gncfq"]
+[ext_resource type="Texture2D" uid="uid://u3ji1wkrxsbw" path="res://assets/spider/nozka.png" id="5_3ti6d"]
+[ext_resource type="Texture2D" uid="uid://cvelv8pnqfk7d" path="res://assets/spider/pocotonazywamwidaccotojest2.png" id="6_wvs52"]
+[ext_resource type="Texture2D" uid="uid://bqv72dvfne5u3" path="res://assets/spider/pocotonazywamwidaccotojest.png" id="7_qq1py"]
+[ext_resource type="Texture2D" uid="uid://dopb1r7c6vdhw" path="res://assets/spider/srodeklewa.png" id="8_gj010"]
+[ext_resource type="Texture2D" uid="uid://dkuw3praq8y1e" path="res://assets/spider/srodekprawa.png" id="9_cwlqo"]
+[ext_resource type="Texture2D" uid="uid://o3rjy0spx1ar" path="res://assets/spider/tuowpajak.png" id="10_pbpr4"]
+[ext_resource type="Texture2D" uid="uid://5s0tmktcogc8" path="res://assets/spider/czarnaotchan.png" id="11_vpdn0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkp7s"]
+size = Vector2(219, 133)
+
+[node name="Spider" type="Node2D"]
+script = ExtResource("1_he8po")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(99.5, 56.5)
+shape = SubResource("RectangleShape2D_fkp7s")
+
+[node name="Czarnaotchan" type="Sprite2D" parent="."]
+position = Vector2(30, -243)
+texture = ExtResource("11_vpdn0")
+
+[node name="Dol" type="Sprite2D" parent="."]
+position = Vector2(-484, 101)
+texture = ExtResource("2_7owrk")
+
+[node name="Dolprawa" type="Sprite2D" parent="."]
+position = Vector2(484, 101)
+texture = ExtResource("3_bfwrg")
+
+[node name="Nozka2" type="Sprite2D" parent="."]
+position = Vector2(105, -315)
+texture = ExtResource("4_gncfq")
+
+[node name="Nozka" type="Sprite2D" parent="."]
+position = Vector2(-128, -335)
+texture = ExtResource("5_3ti6d")
+
+[node name="Pocotonazywamwidaccotojest2" type="Sprite2D" parent="."]
+position = Vector2(-314, -368)
+texture = ExtResource("6_wvs52")
+
+[node name="Pocotonazywamwidaccotojest" type="Sprite2D" parent="."]
+position = Vector2(299, -371)
+texture = ExtResource("7_qq1py")
+
+[node name="Srodeklewa" type="Sprite2D" parent="."]
+position = Vector2(466, -63)
+texture = ExtResource("8_gj010")
+
+[node name="Srodekprawa" type="Sprite2D" parent="."]
+position = Vector2(-466, -63)
+texture = ExtResource("9_cwlqo")
+
+[node name="Tuowpajak" type="Sprite2D" parent="."]
+texture = ExtResource("10_pbpr4")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

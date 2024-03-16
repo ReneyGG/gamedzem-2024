@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkmjmbu0358qi"]
+[gd_scene load_steps=9 format=3 uid="uid://bkmjmbu0358qi"]
 
 [ext_resource type="Script" path="res://scripts/PlayerAlive.gd" id="1_x1nf3"]
 [ext_resource type="Texture2D" uid="uid://bo1x16hg2w4jo" path="res://assets/image.png" id="2_coyge"]
+[ext_resource type="AudioStream" uid="uid://bwg3o8efodcqr" path="res://sfx/jump.wav" id="3_fial8"]
+[ext_resource type="AudioStream" uid="uid://cvbkw8padpbp3" path="res://sfx/mysz_laduje.wav" id="4_xds6v"]
+[ext_resource type="AudioStream" uid="uid://d0rpjt6710aq5" path="res://sfx/krok.wav" id="5_erib1"]
+[ext_resource type="AudioStream" uid="uid://dtht818p8y52p" path="res://sfx/winding.wav" id="6_oahof"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbl6g"]
 size = Vector2(537, 436)
@@ -25,5 +29,20 @@ shape = SubResource("RectangleShape2D_rbl6g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ug3a0")
 
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fial8")
+
+[node name="Land" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xds6v")
+
+[node name="Step" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_erib1")
+
+[node name="Wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_oahof")
+
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

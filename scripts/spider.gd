@@ -10,7 +10,7 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	global_position.y -= 100 * delta
+	global_position.y -= 50 * delta
 
 ##Poruszanie Kolizji
 #func start_tween():

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cp6jwl5n8bw87" path="res://icon.svg" id="2_b2ix7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_woxgo"]
-size = Vector2(1312.17, 677.796)
+size = Vector2(1312.17, 742.105)
 
 [node name="Spider" type="CharacterBody2D"]
 position = Vector2(987, 203)
@@ -14,9 +14,9 @@ duration = null
 rotation_speed = null
 
 [node name="SpiderBody" type="Sprite2D" parent="."]
-position = Vector2(5.99988, 447)
+position = Vector2(6, 390)
 rotation = -6.28319
-scale = Vector2(3.06086, 1.31844)
+scale = Vector2(12.079, 6.59942)
 texture = ExtResource("2_b2ix7")
 
 [node name="SpiderLeg" type="CharacterBody2D" parent="SpiderBody"]
@@ -32,11 +32,11 @@ texture = ExtResource("2_b2ix7")
 position = Vector2(1.7053e-13, -12)
 rotation = -6.28319
 scale = Vector2(1.19488, -1.25184)
-collision_layer = 4
-collision_mask = 4
+collision_layer = 6
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-5.0213, -347.454)
+position = Vector2(-5.02148, -314.336)
 scale = Vector2(1.03528, 1.02996)
 shape = SubResource("RectangleShape2D_woxgo")
 

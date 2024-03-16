@@ -66,3 +66,6 @@ acceleration = 110
 
 [node name="Spider" parent="." instance=ExtResource("6_oode5")]
 position = Vector2(584, 816)
+offset = Vector2(0, -800)
+duration = 7.5
+rotation_speed = 1.5

@@ -5,16 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://cbvq13qx2nji8" path="res://tuowpajak.png" id="2_pe6bg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_woxgo"]
-size = Vector2(1451.41, 548.726)
+size = Vector2(1075.87, 548.726)
 
 [node name="Spider" type="CharacterBody2D"]
 position = Vector2(795, 317)
 script = ExtResource("1_vij64")
 
 [node name="SpiderBody" type="Sprite2D" parent="."]
-position = Vector2(2.99997, 172)
+position = Vector2(0.999985, 174)
 rotation = -6.28319
-scale = Vector2(4.32057, 1.1448)
+scale = Vector2(3.26623, 1.1448)
 texture = ExtResource("2_pe6bg")
 
 [node name="SpiderLeg" type="CharacterBody2D" parent="SpiderBody"]
@@ -27,15 +27,16 @@ position = Vector2(-2008.38, -1305.29)
 scale = Vector2(5.19319, 26.1565)
 texture = ExtResource("2_b2ix7")
 
-[node name="Area2D" type="Area2D" parent="SpiderBody"]
-position = Vector2(-0.694168, -160.727)
-scale = Vector2(0.276556, -1.0935)
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1.7053e-13, -12)
+rotation = -6.28319
+scale = Vector2(1.19488, -1.25184)
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpiderBody/Area2D"]
-position = Vector2(7.76343, -151.776)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.000732422, -146.385)
 scale = Vector2(1.03528, 1.02996)
 shape = SubResource("RectangleShape2D_woxgo")
 
-[connection signal="body_entered" from="SpiderBody/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

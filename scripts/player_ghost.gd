@@ -20,7 +20,7 @@ var state_machine
 var current
 
 func _ready():
-	pass
+	$Sprite2D.play()
 	#camera = get_parent().get_node("Camera2D")
 	#camera = get_parent().find_node("Camera2D")
 	#state_machine = $AnimationTree["parameters/playback"]

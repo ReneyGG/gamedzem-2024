@@ -7,7 +7,7 @@
 size = Vector2(537, 436)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ug3a0"]
-radius = 265.731
+radius = 523.001
 
 [node name="PlayerAlive" type="CharacterBody2D" groups=["interact"]]
 script = ExtResource("1_x1nf3")

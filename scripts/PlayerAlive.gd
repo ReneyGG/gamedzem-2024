@@ -52,7 +52,13 @@ func _input(event: InputEvent) -> void:
 			var angle = initial_mouse_pos.angle_to(current_mouse_pos)
 			rotation = angle + initial_angle
 			if progress < 100.0:
-				progress += abs(angle)/4.0
+				var add
+				var mouse_v = event.velocity
+				if abs(mouse_v.x) > abs(mouse_v.y):
+					add = abs(mouse_v.x)
+				else:
+					add = abs(mouse_v.y)
+				progress += 0.0001*add + 0.0785
 
 func _on_area_2d_mouse_entered():
 	mouse_on_me = true
@@ -78,10 +84,8 @@ func _physics_process(_delta):
 	if ui_on:
 		return
 	
-	if progress <= 0.0:
-		return
-	
-	progress -= 0.1
+	if progress > 0.0:
+		progress -= 0.1
 	
 	#if is_on_floor() and current == "run":
 		#$DustTrailRun.emitting = true
@@ -137,12 +141,11 @@ func _physics_process(_delta):
 	
 	if Input.is_action_just_pressed("mecha") and in_range:
 		if ghost_mode:
-			
 			get_parent().delete_ghost()
 		else:
 			get_parent().spawn_ghost()
 	
-	if Input.is_action_just_pressed("alive_up") and not ghost_mode:
+	if Input.is_action_just_pressed("alive_up") and not ghost_mode and progress > 0.0:
 		jump_buffer_counter = jump_buffer_time
 	
 	if jump_buffer_counter > 0:

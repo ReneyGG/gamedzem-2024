@@ -7,7 +7,7 @@ var range = preload("res://scenes/range.tscn")
 var ghost = preload("res://scenes/player_ghost.tscn")
 
 func _ready():
-	pass
+	player_alive = get_node("PlayerAlive")
 
 func _physics_process(delta):
 	get_node("Camera2D/CanvasLayer/Control/ProgressBar").value = player_alive.progress

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3jv5qscs4yds"]
+[gd_scene load_steps=11 format=3 uid="uid://d3jv5qscs4yds"]
 
 [ext_resource type="PackedScene" uid="uid://bkmjmbu0358qi" path="res://scenes/player_alive.tscn" id="1_2f3dp"]
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_pu1dc"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bsxqg2ewuhq5d" path="res://scenes/platform.tscn" id="3_pyf0e"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="4_17iog"]
 [ext_resource type="PackedScene" uid="uid://cvl4jjtbik2e0" path="res://scenes/rotating.tscn" id="6_l0ert"]
+[ext_resource type="Texture2D" uid="uid://cdukaoegy48q" path="res://assets/boczki.png" id="8_gg1i6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yo4q6"]
 size = Vector2(72, 1689)
@@ -18,7 +19,8 @@ size = Vector2(1966.5, 121)
 script = ExtResource("1_pu1dc")
 
 [node name="Bg" type="Sprite2D" parent="."]
-position = Vector2(959, -37)
+position = Vector2(958, -32)
+scale = Vector2(1.00625, 1)
 texture = ExtResource("2_faycr")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
@@ -104,3 +106,14 @@ fill_mode = 3
 
 [node name="Rotating" parent="." instance=ExtResource("6_l0ert")]
 position = Vector2(1003, 159)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.862745, 0.862745, 0.862745, 1)
+
+[node name="Foreground" type="Node2D" parent="."]
+
+[node name="Fg" type="Sprite2D" parent="Foreground"]
+z_index = 2
+position = Vector2(958, -32)
+scale = Vector2(1.006, 1.006)
+texture = ExtResource("8_gg1i6")

@@ -1,18 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvl4jjtbik2e0"]
 
-[ext_resource type="Texture2D" uid="uid://bk87j7bkg718m" path="res://assets/kiKo9BA4T.png" id="1_dh8d6"]
+[ext_resource type="Texture2D" uid="uid://bn0lt07vktsi1" path="res://assets/cog1.png" id="1_vh5dq"]
 [ext_resource type="Script" path="res://scripts/rotating.gd" id="1_y8tc1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2aeeg"]
-radius = 1074.95
+radius = 207.707
 
 [node name="Rotating" type="Sprite2D" groups=["interact"]]
 position = Vector2(837.875, 659.125)
-scale = Vector2(0.134125, 0.134125)
-texture = ExtResource("1_dh8d6")
+texture = ExtResource("1_vh5dq")
 script = ExtResource("1_y8tc1")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-5.875, -12.125)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_2aeeg")

@@ -1,19 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://fuixwvel2xmw"]
+[gd_scene load_steps=5 format=3 uid="uid://fuixwvel2xmw"]
 
-[ext_resource type="Script" path="res://scenes/Spider.gd" id="1_nkyt0"]
+[ext_resource type="Script" path="res://scripts/Spider_Scary.gd" id="1_d3bn5"]
 [ext_resource type="Texture2D" uid="uid://cp6jwl5n8bw87" path="res://icon.svg" id="2_b2ix7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ypcbw"]
-size = Vector2(1594, 902)
+size = Vector2(1594, 927)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvvb8"]
+size = Vector2(1617, 940)
 
 [node name="Spider" type="CharacterBody2D"]
-script = ExtResource("1_nkyt0")
+script = ExtResource("1_d3bn5")
+offset = null
+duration = null
 
 [node name="SpiderShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 381)
+position = Vector2(1, 368.5)
 shape = SubResource("RectangleShape2D_ypcbw")
 
 [node name="SpiderBody" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(1.52588e-05, 376.5)
 scale = Vector2(12.5469, 7.13281)
 texture = ExtResource("2_b2ix7")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Deathzone" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 371)
+shape = SubResource("RectangleShape2D_cvvb8")
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

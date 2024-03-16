@@ -9,5 +9,10 @@ func _ready():
 func start_tween():
 	var tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops().set_parallel(false)
-	tween.tween_property($SpiderBody, "position", offset, duration * 10)
+	tween.tween_property($SpiderBody, "position", offset, duration * 5)
 	
+
+func _on_area_2d_body_entered(body):
+	print("You died in *DARK SOULS* git good")
+	
+s

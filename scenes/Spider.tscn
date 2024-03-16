@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://fuixwvel2xmw"]
+
+[ext_resource type="Script" path="res://scenes/Spider.gd" id="1_nkyt0"]
+[ext_resource type="Texture2D" uid="uid://cp6jwl5n8bw87" path="res://icon.svg" id="2_b2ix7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypcbw"]
+size = Vector2(1594, 902)
+
+[node name="Spider" type="CharacterBody2D"]
+script = ExtResource("1_nkyt0")
+
+[node name="SpiderShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 381)
+shape = SubResource("RectangleShape2D_ypcbw")
+
+[node name="SpiderBody" type="Sprite2D" parent="."]
+position = Vector2(1.52588e-05, 376.5)
+scale = Vector2(12.5469, 7.13281)
+texture = ExtResource("2_b2ix7")

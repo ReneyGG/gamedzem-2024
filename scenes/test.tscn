@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3jv5qscs4yds"]
+[gd_scene load_steps=9 format=3 uid="uid://d3jv5qscs4yds"]
 
 [ext_resource type="PackedScene" uid="uid://bkmjmbu0358qi" path="res://scenes/player_alive.tscn" id="1_2f3dp"]
 [ext_resource type="Texture2D" uid="uid://cp6jwl5n8bw87" path="res://icon.svg" id="2_vdde4"]
 [ext_resource type="PackedScene" uid="uid://bsxqg2ewuhq5d" path="res://scenes/platform.tscn" id="3_pyf0e"]
 [ext_resource type="PackedScene" uid="uid://d07joqpwxm5sv" path="res://scenes/player_ghost.tscn" id="3_yn4fl"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="4_17iog"]
+[ext_resource type="PackedScene" uid="uid://fuixwvel2xmw" path="res://scenes/Spider.tscn" id="6_oode5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yo4q6"]
 size = Vector2(54, 1072)
@@ -60,3 +61,6 @@ position = Vector2(565, 489)
 [node name="PlayerGhost" parent="." instance=ExtResource("3_yn4fl")]
 position = Vector2(396, 418)
 acceleration = 110
+
+[node name="Spider" parent="." instance=ExtResource("6_oode5")]
+position = Vector2(584, 816)

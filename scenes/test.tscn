@@ -1,55 +1,106 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3jv5qscs4yds"]
+[gd_scene load_steps=10 format=3 uid="uid://d3jv5qscs4yds"]
 
 [ext_resource type="PackedScene" uid="uid://bkmjmbu0358qi" path="res://scenes/player_alive.tscn" id="1_2f3dp"]
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_pu1dc"]
+[ext_resource type="Texture2D" uid="uid://vmcco2x8856p" path="res://assets/gayam-back-farprogres.png" id="2_faycr"]
 [ext_resource type="Texture2D" uid="uid://cp6jwl5n8bw87" path="res://icon.svg" id="2_vdde4"]
 [ext_resource type="PackedScene" uid="uid://bsxqg2ewuhq5d" path="res://scenes/platform.tscn" id="3_pyf0e"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="4_17iog"]
+[ext_resource type="PackedScene" uid="uid://cvl4jjtbik2e0" path="res://scenes/rotating.tscn" id="6_l0ert"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yo4q6"]
-size = Vector2(54, 1072)
+size = Vector2(72, 1689)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1c3c"]
-size = Vector2(1203, 66)
+size = Vector2(1966.5, 121)
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_pu1dc")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(959, -37)
+texture = ExtResource("2_faycr")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-17, 224)
+position = Vector2(-23, 138)
 shape = SubResource("RectangleShape2D_yo4q6")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(1186, 200)
+position = Vector2(1932, 159.5)
 shape = SubResource("RectangleShape2D_yo4q6")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(562, 632)
+position = Vector2(943.75, 1042.5)
 shape = SubResource("RectangleShape2D_u1c3c")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(577, 645)
-scale = Vector2(9.78125, 0.65625)
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(939.5, 1032.5)
+scale = Vector2(15.4141, 0.882812)
 texture = ExtResource("2_vdde4")
 
 [node name="Platform" parent="." instance=ExtResource("3_pyf0e")]
-position = Vector2(173, 505)
+position = Vector2(241, 911)
 
 [node name="Platform2" parent="." instance=ExtResource("3_pyf0e")]
-position = Vector2(728, 417)
+position = Vector2(958, 727)
+
+[node name="Platform3" parent="." instance=ExtResource("3_pyf0e")]
+position = Vector2(1485, 493)
+
+[node name="Platform4" parent="." instance=ExtResource("3_pyf0e")]
+position = Vector2(772, 250)
+
+[node name="Platform5" parent="." instance=ExtResource("3_pyf0e")]
+position = Vector2(161, 95)
 
 [node name="PlayerAlive" parent="." instance=ExtResource("1_2f3dp")]
+position = Vector2(975, 730)
+scale = Vector2(0.3, 0.3)
 camera_path = NodePath("../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-limit_smoothed = true
+limit_left = 0
+limit_right = 1915
+limit_bottom = 1050
 position_smoothing_enabled = true
 script = ExtResource("4_17iog")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="Control" type="Control" parent="Camera2D/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Camera2D/CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -134.0
+offset_top = -546.0
+offset_right = -10.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+value = 50.0
+rounded = true
+fill_mode = 3
+
 [node name="Lines" type="Node2D" parent="."]
+
+[node name="Rotating" parent="." instance=ExtResource("6_l0ert")]
+position = Vector2(1003, 159)

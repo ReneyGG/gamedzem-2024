@@ -1,20 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://d07joqpwxm5sv"]
 
 [ext_resource type="Script" path="res://scripts/player_ghost.gd" id="1_ia2h0"]
-[ext_resource type="Texture2D" uid="uid://cp6jwl5n8bw87" path="res://icon.svg" id="2_yuv1d"]
+[ext_resource type="Texture2D" uid="uid://e1cvw66xoels" path="res://assets/duch.png" id="2_3xpgv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbl6g"]
-size = Vector2(110, 127)
+size = Vector2(354, 226)
 
 [node name="PlayerGhost" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_ia2h0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_rbl6g")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.427451, 0.45098, 1)
-texture = ExtResource("2_yuv1d")
+texture = ExtResource("2_3xpgv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -30)
+shape = SubResource("RectangleShape2D_rbl6g")

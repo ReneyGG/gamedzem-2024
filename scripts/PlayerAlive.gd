@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var cayote_time := 5
 @export var camera_path : NodePath
 
+#var in_range := true
 var camera
 var landed := false
 var ui_on := false
@@ -21,6 +22,44 @@ var state_machine
 var current
 var ghost_mode := false
 var ghost_node = null
+var progress := 60.0
+
+
+enum { NONE, ROTATING}
+
+var state = NONE
+var mouse_on_me: bool = false
+var in_range := true
+var initial_mouse_pos: Vector2
+var initial_angle: float
+
+func _input(event: InputEvent) -> void:
+	if not in_range or not ghost_mode:
+		return
+	
+	if event is InputEventMouseButton:
+		if event.pressed: # press button
+			if mouse_on_me:
+				initial_angle = rotation
+				initial_mouse_pos = get_local_mouse_position().rotated(rotation)
+				state = ROTATING
+		else: # release button
+			state = NONE
+	
+	if event is InputEventMouseMotion:
+		if state == ROTATING:
+			var current_mouse_pos: Vector2 = get_local_mouse_position().rotated(rotation)
+			var angle = initial_mouse_pos.angle_to(current_mouse_pos)
+			rotation = angle + initial_angle
+			if progress < 100.0:
+				progress += abs(angle)/4.0
+
+func _on_area_2d_mouse_entered():
+	mouse_on_me = true
+
+func _on_area_2d_mouse_exited():
+	mouse_on_me = false
+
 
 func _ready():
 	camera = get_node(camera_path)
@@ -38,6 +77,11 @@ func _physics_process(_delta):
 	
 	if ui_on:
 		return
+	
+	if progress <= 0.0:
+		return
+	
+	progress -= 0.1
 	
 	#if is_on_floor() and current == "run":
 		#$DustTrailRun.emitting = true
@@ -71,14 +115,14 @@ func _physics_process(_delta):
 	
 	if Input.is_action_pressed("alive_right") and not ghost_mode:
 		velocity.x += acceleration
-		sprite.flip_h = false
+		sprite.flip_h = true
 		if is_on_floor():
 			pass
 			#state_machine.travel("run")
 		
 	elif Input.is_action_pressed("alive_left") and not ghost_mode:
 		velocity.x -= acceleration
-		sprite.flip_h = true
+		sprite.flip_h = false
 		if is_on_floor():
 			pass
 			#state_machine.travel("run")
@@ -91,8 +135,9 @@ func _physics_process(_delta):
 			#state_machine.travel("idle")
 		velocity.x = lerp(velocity.x,0.0,0.3)
 	
-	if Input.is_action_just_pressed("mecha"):
+	if Input.is_action_just_pressed("mecha") and in_range:
 		if ghost_mode:
+			
 			get_parent().delete_ghost()
 		else:
 			get_parent().spawn_ghost()
@@ -118,7 +163,7 @@ func _physics_process(_delta):
 		if velocity.y < 0:
 			velocity.y += 600
 	
-	velocity.x = clamp(velocity.x, -max_speed, max_speed)
+	velocity.x = clamp(velocity.x, -max_speed * (progress/100), max_speed * (progress/100))
 	sprite.scale.x = lerp(sprite.scale.x, 1.0, 0.2)
 	sprite.scale.y = lerp(sprite.scale.y, 1.0, 0.2)
 	move_and_slide()

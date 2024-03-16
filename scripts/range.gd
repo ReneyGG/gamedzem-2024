@@ -12,5 +12,7 @@ func _process(delta):
 	var v = points[0] - points[1]
 	if abs(v.x) > 300 or abs(v.y) > 300:
 		self.visible = false
+		node1.in_range = false
 	else:
 		self.visible = true
+		node1.in_range = true

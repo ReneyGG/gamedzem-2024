@@ -62,10 +62,10 @@ func _physics_process(_delta):
 	
 	if Input.is_action_pressed("alive_right"):
 		velocity.x += acceleration
-		sprite.flip_h = false
+		sprite.flip_h = true
 	if Input.is_action_pressed("alive_left"):
 		velocity.x -= acceleration
-		sprite.flip_h = true
+		sprite.flip_h = false
 	if Input.is_action_pressed("alive_up"):
 		velocity.y -= acceleration
 	if Input.is_action_pressed("alive_down"):

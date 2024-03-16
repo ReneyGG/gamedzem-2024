@@ -1,17 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkmjmbu0358qi"]
+[gd_scene load_steps=5 format=3 uid="uid://bkmjmbu0358qi"]
 
 [ext_resource type="Script" path="res://scripts/PlayerAlive.gd" id="1_x1nf3"]
-[ext_resource type="Texture2D" uid="uid://cp6jwl5n8bw87" path="res://icon.svg" id="2_nxc36"]
+[ext_resource type="Texture2D" uid="uid://bo1x16hg2w4jo" path="res://assets/image.png" id="2_coyge"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbl6g"]
-size = Vector2(110, 127)
+size = Vector2(537, 436)
 
-[node name="PlayerAlive" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ug3a0"]
+radius = 265.731
+
+[node name="PlayerAlive" type="CharacterBody2D" groups=["interact"]]
 script = ExtResource("1_x1nf3")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("2_coyge")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
+position = Vector2(-163.5, 39)
 shape = SubResource("RectangleShape2D_rbl6g")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_nxc36")
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ug3a0")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

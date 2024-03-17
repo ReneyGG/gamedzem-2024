@@ -19,6 +19,7 @@ var jump_buffer_counter := 0
 var cayote_counter := 0
 var max_fall_speed := 2000
 var state_machine
+var animation
 var current
 var ghost_mode := false
 var ghost_node = null
@@ -66,7 +67,6 @@ func _on_area_2d_mouse_entered():
 func _on_area_2d_mouse_exited():
 	mouse_on_me = false
 
-
 func _ready():
 	randomize()
 	$Timer.start()
@@ -74,11 +74,13 @@ func _ready():
 	camera.follow = self
 	#camera = get_parent().get_node("Camera2D")
 	#camera = get_parent().find_node("Camera2D")
-	#state_machine = $AnimationTree["parameters/playback"]
-	#state_machine.start("idle")
+	animation = get_node("AnimationPlayer")
+	state_machine = $AnimationTree["parameters/playback"]
+	state_machine.start("idle")
 
 func _physics_process(_delta):
-	#current = state_machine.get_current_node()
+	current = state_machine.get_current_node()
+	#current = animation.current_animation
 	
 	if current == "death":
 		return
@@ -105,7 +107,7 @@ func _physics_process(_delta):
 
 	if not is_on_floor():
 		landed = true
-		#state_machine.travel("fall")
+		state_machine.travel("fall")
 		if cayote_counter > 0:
 			cayote_counter -= 1
 	
@@ -123,29 +125,23 @@ func _physics_process(_delta):
 		velocity.x += acceleration
 		sprite.flip_h = true
 		if is_on_floor():
-			pass
-			#state_machine.travel("run")
+			state_machine.travel("run")
 		
 	elif Input.is_action_pressed("alive_left") and not ghost_mode:
 		velocity.x -= acceleration
 		sprite.flip_h = false
 		if is_on_floor():
-			pass
-			#state_machine.travel("run")
+			state_machine.travel("run")
 	
 	else:
 		#$Run.playing = false
 		#$DustTrailRun.emitting = false
 		if is_on_floor():
-			pass
-			#state_machine.travel("idle")
+			state_machine.travel("idle")
 		velocity.x = lerp(velocity.x,0.0,0.3)
 	
 	if Input.is_action_just_pressed("mecha") and in_range:
-		if ghost_mode:
-			get_parent().delete_ghost()
-		else:
-			get_parent().spawn_ghost()
+		get_ghost()
 	
 	if Input.is_action_just_pressed("alive_up") and not ghost_mode and progress > 0.0:
 		jump_buffer_counter = jump_buffer_time
@@ -162,7 +158,8 @@ func _physics_process(_delta):
 		jump_buffer_counter = 0
 		cayote_counter = 0
 		sprite.scale = Vector2(0.7, 1.3)
-		#state_machine.travel("jump")
+		#$AnimationPlayer.play("jump")
+		state_machine.travel("jump")
 	
 	if Input.is_action_just_released("alive_up") and not ghost_mode:
 		if velocity.y < 0:
@@ -173,6 +170,15 @@ func _physics_process(_delta):
 	sprite.scale.y = lerp(sprite.scale.y, 1.0, 0.2)
 	move_and_slide()
 	var view = get_viewport_rect().size/2
+
+func get_ghost():
+	if ghost_mode:
+		if ghost_node.get_node("Sprite2D").animation == "haunt" or ghost_node.get_node("Sprite2D").animation == "unhaunt":
+			print(ghost_node.get_node("Sprite2D").animation)
+			return
+		get_parent().delete_ghost()
+	else:
+		get_parent().spawn_ghost()
 
 func death():
 # warning-ignore:return_value_discarded
@@ -185,9 +191,8 @@ func play_step():
 
 func stop_movement(b):
 	if b:
-		#$Run.playing = false
 		$DustTrailRun.emitting = false
-		#state_machine.travel("idle")
+		state_machine.travel("idle")
 		ui_on = true
 	else:
 		ui_on = false

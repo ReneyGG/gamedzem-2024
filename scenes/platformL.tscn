@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlc0xlyqetovd"]
+
+[ext_resource type="Texture2D" uid="uid://bhljfigc07ton" path="res://assets/platduzi.png" id="1_pjt1y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60ntc"]
+size = Vector2(615.333, 73.3333)
+
+[node name="PlatformL" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pjt1y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-19.6667, -6)
+shape = SubResource("RectangleShape2D_60ntc")

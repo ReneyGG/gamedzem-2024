@@ -20,7 +20,8 @@ var state_machine
 var current
 
 func _ready():
-	$Sprite2D.play()
+	pass
+	#$Sprite2D.play("fly")
 	#camera = get_parent().get_node("Camera2D")
 	#camera = get_parent().find_node("Camera2D")
 	#state_machine = $AnimationTree["parameters/playback"]
@@ -33,6 +34,9 @@ func _physics_process(_delta):
 		return
 	
 	if ui_on:
+		return
+	
+	if $Sprite2D.animation == "haunt":
 		return
 	
 	#if is_on_floor() and current == "run":

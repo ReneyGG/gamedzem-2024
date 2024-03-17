@@ -7,16 +7,15 @@ var range = preload("res://scenes/range.tscn")
 var ghost = preload("res://scenes/player_ghost.tscn")
 
 func _ready():
+	$Pause.hide()
 	$Sfx/Ambient.play()
 	player_alive = get_node("PlayerAlive")
 
 func _physics_process(delta):
 	get_node("Camera2D/CanvasLayer/Control/ProgressBar").value = player_alive.progress
-	
 	#$Foreground.position.x += (player_alive.global_position.x*delta*2)-$Foreground.position.x
 
 func delete_ghost():
-	$Sfx/Opetanie.play()
 	#get_node("Camera2D/Rotating").hide()
 	for i in lines.get_children():
 		i.queue_free()
@@ -24,6 +23,9 @@ func delete_ghost():
 	player_alive.ghost_mode = false
 	player_alive.ghost_node = null
 	get_node("Camera2D").follow = player_alive
+	$Sfx/Opetanie.play()
+	get_node("PlayerGhost/Sprite2D").play("haunt")
+	await get_node("PlayerGhost/Sprite2D").animation_finished
 	get_node("PlayerGhost").queue_free()
 
 func spawn_ghost():
@@ -32,8 +34,11 @@ func spawn_ghost():
 	player_alive.ghost_mode = true
 	var ghost_node = ghost.instantiate()
 	ghost_node.global_position = player_alive.global_position
+	player_alive.ghost_node = ghost_node
 	add_child(ghost_node)
 	get_node("Camera2D").follow = ghost_node
+	get_node("PlayerGhost/Sprite2D").play("unhaunt")
+	await get_node("PlayerGhost/Sprite2D").animation_finished
 	
 	for i in get_children():
 		if i.is_in_group("interact"):

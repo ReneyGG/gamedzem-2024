@@ -1,0 +1,227 @@
+[gd_scene load_steps=16 format=3 uid="uid://cn5nn1snu86x6"]
+
+[ext_resource type="Texture2D" uid="uid://crxovye5ox2db" path="res://assets/title/tlomenu.png" id="1_kaumq"]
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_ubtrb"]
+[ext_resource type="Texture2D" uid="uid://cc47w8pnfa5av" path="res://assets/title/gradient.png" id="2_3tqh8"]
+[ext_resource type="Texture2D" uid="uid://bqjglflco1ul1" path="res://assets/title/title.png" id="3_5woh5"]
+[ext_resource type="Texture2D" uid="uid://3t5d2gk37nfk" path="res://assets/title/tlobuttonow.png" id="4_jt2rj"]
+[ext_resource type="Texture2D" uid="uid://de0d5brdblxdk" path="res://assets/title/play.png" id="6_wryjv"]
+[ext_resource type="Texture2D" uid="uid://0lxs28nxeo8w" path="res://assets/title/opcje.png" id="7_jrrxv"]
+[ext_resource type="Texture2D" uid="uid://bopo2wjf68d2u" path="res://assets/title/hov-play.png" id="7_okcym"]
+[ext_resource type="Texture2D" uid="uid://cn3v3q5u42ace" path="res://assets/title/trybobrot.png" id="8_k5qmp"]
+[ext_resource type="Texture2D" uid="uid://budbiyl6fneqt" path="res://assets/title/wymcstond.png" id="8_sdd05"]
+[ext_resource type="Texture2D" uid="uid://bwggcjiycgqof" path="res://assets/title/hov-opcje.png" id="10_q1yl2"]
+[ext_resource type="Texture2D" uid="uid://dp583jdvqgu3n" path="res://assets/title/hov-wyjdz.png" id="12_4csvm"]
+
+[sub_resource type="Animation" id="Animation_ad4nw"]
+resource_name = "fade_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hnxg0"]
+resource_name = "fade_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lvk40"]
+_data = {
+"fade_in": SubResource("Animation_hnxg0"),
+"fade_out": SubResource("Animation_ad4nw")
+}
+
+[node name="TitleScreen" type="CanvasLayer"]
+script = ExtResource("1_ubtrb")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bg" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kaumq")
+
+[node name="Gradient" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1078.0
+offset_top = -179.0
+offset_right = 1711.0
+offset_bottom = 626.0
+grow_horizontal = 2
+texture = ExtResource("2_3tqh8")
+
+[node name="Title" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -608.0
+offset_top = 17.0
+offset_right = 653.0
+offset_bottom = 460.0
+grow_horizontal = 2
+texture = ExtResource("3_5woh5")
+
+[node name="ButtonBg" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -44.0
+offset_right = 232.0
+offset_bottom = 469.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_jt2rj")
+
+[node name="TrybPlay" type="Sprite2D" parent="Control"]
+position = Vector2(656, 515)
+texture = ExtResource("8_k5qmp")
+
+[node name="Play" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -319.0
+offset_top = -56.0
+offset_right = 37.0
+offset_bottom = 169.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_wryjv")
+texture_hover = ExtResource("7_okcym")
+
+[node name="TrybOptions" type="Sprite2D" parent="Control"]
+position = Vector2(1299, 671)
+texture = ExtResource("8_k5qmp")
+
+[node name="Options" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 103.0
+offset_top = 101.0
+offset_right = 370.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_jrrxv")
+texture_hover = ExtResource("10_q1yl2")
+
+[node name="TrybExit" type="Sprite2D" parent="Control"]
+position = Vector2(746.838, 969.75)
+scale = Vector2(0.797826, 0.797826)
+texture = ExtResource("8_k5qmp")
+
+[node name="Exit" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -246.0
+offset_top = 269.0
+offset_right = 57.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("8_sdd05")
+texture_hover = ExtResource("12_4csvm")
+
+[node name="Trybobrot" type="Sprite2D" parent="Control"]
+position = Vector2(226.591, 851)
+scale = Vector2(1.06087, 1.06087)
+texture = ExtResource("8_k5qmp")
+
+[node name="Trybobrot2" type="Sprite2D" parent="Control"]
+position = Vector2(37.6043, 989)
+scale = Vector2(1.06957, 1.06957)
+texture = ExtResource("8_k5qmp")
+
+[node name="Trybobrot3" type="Sprite2D" parent="Control"]
+position = Vector2(1543, 1007)
+scale = Vector2(1.06957, 1.06957)
+texture = ExtResource("8_k5qmp")
+
+[node name="Trybobrot4" type="Sprite2D" parent="Control"]
+position = Vector2(1808, 989)
+scale = Vector2(1.06957, 1.06957)
+texture = ExtResource("8_k5qmp")
+
+[node name="Trybobrot5" type="Sprite2D" parent="Control"]
+position = Vector2(1843, 799)
+scale = Vector2(0.826087, 0.826087)
+texture = ExtResource("8_k5qmp")
+
+[node name="Trybobrot6" type="Sprite2D" parent="Control"]
+position = Vector2(286, 1033)
+scale = Vector2(0.826087, 0.826087)
+texture = ExtResource("8_k5qmp")
+
+[node name="Fade" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lvk40")
+}
+
+[connection signal="mouse_entered" from="Control/Play" to="." method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Play" to="." method="_on_play_mouse_exited"]
+[connection signal="pressed" from="Control/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="Control/Options" to="." method="_on_options_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Options" to="." method="_on_options_mouse_exited"]
+[connection signal="pressed" from="Control/Options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="Control/Exit" to="." method="_on_exit_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Exit" to="." method="_on_exit_mouse_exited"]
+[connection signal="pressed" from="Control/Exit" to="." method="_on_exit_pressed"]

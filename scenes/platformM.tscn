@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfokwbhmoxfif"]
+
+[ext_resource type="Texture2D" uid="uid://bxcpj6v1gl3rw" path="res://assets/platsredni.png" id="1_6i08s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60ntc"]
+size = Vector2(382, 74.6666)
+
+[node name="PlatformM" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6i08s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-19, -5.33335)
+shape = SubResource("RectangleShape2D_60ntc")

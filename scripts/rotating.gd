@@ -3,7 +3,7 @@ extends Sprite2D
 
 var state = "NONE"
 var mouse_on_me: bool = false
-var in_range := false
+@export var in_range := false
 var initial_mouse_pos: Vector2
 var initial_angle: float
 var speed := 0.0

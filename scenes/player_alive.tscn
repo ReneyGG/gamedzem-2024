@@ -1,13 +1,15 @@
-[gd_scene load_steps=47 format=3 uid="uid://bkmjmbu0358qi"]
+[gd_scene load_steps=49 format=3 uid="uid://bkmjmbu0358qi"]
 
 [ext_resource type="Script" path="res://scripts/PlayerAlive.gd" id="1_x1nf3"]
 [ext_resource type="Texture2D" uid="uid://bo1x16hg2w4jo" path="res://assets/image.png" id="2_coyge"]
 [ext_resource type="AudioStream" uid="uid://bwg3o8efodcqr" path="res://sfx/jump.wav" id="3_fial8"]
-[ext_resource type="Texture2D" uid="uid://dx3o4dxe6ma0t" path="res://assets/MYSZIO.png" id="3_fmg73"]
+[ext_resource type="Texture2D" uid="uid://btlsvq65mrsdj" path="res://assets/robot/idle/idlerobot1.png" id="3_rm7xt"]
 [ext_resource type="Texture2D" uid="uid://ddqijfvqpv3ul" path="res://assets/robot/run/szczurfinal.png" id="4_71nun"]
+[ext_resource type="Texture2D" uid="uid://c02hgrxcxe6o3" path="res://assets/robot/idle/idlerobot2.png" id="4_hpcyl"]
 [ext_resource type="AudioStream" uid="uid://cvbkw8padpbp3" path="res://sfx/mysz_laduje.wav" id="4_xds6v"]
 [ext_resource type="AudioStream" uid="uid://d0rpjt6710aq5" path="res://sfx/krok.wav" id="5_erib1"]
 [ext_resource type="Texture2D" uid="uid://vd7i5wopkrb" path="res://assets/robot/run/szczur2.png" id="5_h8cnu"]
+[ext_resource type="Texture2D" uid="uid://bmdxpykr2q38" path="res://assets/robot/idle/idlerobot3.png" id="5_u8d2k"]
 [ext_resource type="Texture2D" uid="uid://s8yltsd4mbw7" path="res://assets/robot/run/szczur3.png" id="6_d751y"]
 [ext_resource type="AudioStream" uid="uid://dtht818p8y52p" path="res://sfx/winding.wav" id="6_oahof"]
 [ext_resource type="Texture2D" uid="uid://dvj6egvnoam0f" path="res://assets/robot/run/szczur4.png" id="7_an7c5"]
@@ -35,17 +37,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_fmg73")
+"texture": ExtResource("3_rm7xt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hpcyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_u8d2k")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_coyge")
+"texture": ExtResource("5_h8cnu")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -310,7 +318,9 @@ script = ExtResource("1_x1nf3")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(52, -1)
 sprite_frames = SubResource("SpriteFrames_t8iw2")
-animation = &"run"
+animation = &"idle"
+frame = 1
+frame_progress = 0.254845
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 17)
@@ -351,6 +361,7 @@ anim_player = NodePath("../AnimationPlayer")
 [node name="DustTrailRun" type="GPUParticles2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.0784314)
 position = Vector2(1, 113)
+emitting = false
 amount = 24
 process_material = SubResource("ParticleProcessMaterial_1hj6p")
 texture = ExtResource("14_03e04")

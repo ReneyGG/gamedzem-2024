@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d3jv5qscs4yds"]
+[gd_scene load_steps=21 format=3 uid="uid://d3jv5qscs4yds"]
 
 [ext_resource type="PackedScene" uid="uid://bkmjmbu0358qi" path="res://scenes/player_alive.tscn" id="1_2f3dp"]
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_pu1dc"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cdukaoegy48q" path="res://assets/boczki.png" id="8_gg1i6"]
 [ext_resource type="AudioStream" uid="uid://c3kjip7nt8fyv" path="res://sfx/opetanie.wav" id="9_qnhvn"]
 [ext_resource type="Texture2D" uid="uid://ggmva1r75fyg" path="res://assets/winieta.png" id="10_eln7l"]
+[ext_resource type="Texture2D" uid="uid://bo2v5lw3ygde4" path="res://assets/lifebar.png" id="10_knetm"]
 [ext_resource type="AudioStream" uid="uid://cs0hhfbxcakc2" path="res://sfx/od-opetanie.wav" id="10_vilq5"]
 [ext_resource type="AudioStream" uid="uid://djxbbunbpt73a" path="res://sfx/ambient.wav" id="11_oh44s"]
 [ext_resource type="AudioStream" uid="uid://dniopdyi70su0" path="res://sfx/ambient_pajak.wav" id="12_v4u5p"]
@@ -27,10 +28,17 @@ size = Vector2(1966.5, 121)
 [node name="Test" type="Node2D"]
 script = ExtResource("1_pu1dc")
 
-[node name="Bg" type="Sprite2D" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-960, -1200)
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="Bg" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(958, -32)
 scale = Vector2(1.00625, 1)
 texture = ExtResource("2_faycr")
+centered = false
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 collision_layer = 3
@@ -101,21 +109,39 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="Camera2D/CanvasLayer/Control"]
+self_modulate = Color(1, 0.352941, 1, 1)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -134.0
-offset_top = -546.0
-offset_right = -10.0
-offset_bottom = -11.0
+offset_left = -67.0
+offset_top = -547.0
+offset_right = -29.0
+offset_bottom = -171.0
 grow_horizontal = 0
 grow_vertical = 0
 value = 50.0
 rounded = true
 fill_mode = 3
+show_percentage = false
+
+[node name="Bar" type="TextureRect" parent="Camera2D/CanvasLayer/Control/ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -264.0
+offset_right = 61.0
+offset_bottom = 264.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_knetm")
+expand_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D/CanvasLayer/Control"]
 self_modulate = Color(1, 1, 1, 0.196078)
@@ -130,14 +156,21 @@ expand_mode = 1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
-[node name="Foreground" type="Node2D" parent="."]
-position = Vector2(958, 0)
+[node name="ParallaxForeground" type="ParallaxBackground" parent="."]
+layer = 0
 
-[node name="Fg" type="Sprite2D" parent="Foreground"]
-z_index = 2
-position = Vector2(0, -32)
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxForeground"]
+position = Vector2(-960, -1200)
+motion_scale = Vector2(2, 2)
+motion_mirroring = Vector2(0, 2240)
+
+[node name="Fg" type="Sprite2D" parent="ParallaxForeground/ParallaxLayer2"]
+position = Vector2(958, -32)
 scale = Vector2(1.006, 1.006)
 texture = ExtResource("8_gg1i6")
+centered = false
+
+[node name="Pause" parent="." instance=ExtResource("16_uejig")]
 
 [node name="Sfx" type="Node" parent="."]
 
@@ -155,5 +188,3 @@ stream = ExtResource("12_v4u5p")
 
 [node name="BicieSerca" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("13_fonko")
-
-[node name="Pause" parent="." instance=ExtResource("16_uejig")]

@@ -44,11 +44,9 @@ func _on_play_pressed():
 		get_tree().change_scene_to_file("res://scenes/test.tscn")
 
 func _on_options_pressed():
-	pass
-	#if not $AnimationPlayer.is_playing():
-		#$AnimationPlayer.play("fade_out")
-		#await $AnimationPlayer.animation_finished
-		#get_tree().change_scene_to_file("res://scenes/test.tscn")
+	if not $AnimationPlayer.is_playing():
+		var nod = load("res://scenes/options.tscn").instantiate()
+		add_child(nod)
 
 func _on_exit_pressed():
 	if not $AnimationPlayer.is_playing():

@@ -16,6 +16,8 @@ func _process(delta):
 		$Control/TrybExit.rotation_degrees -= 80 * delta
 	
 	if Input.is_action_just_pressed("escape"):
+		if get_node_or_null("Options"):
+			return
 		if get_tree().paused:
 			get_tree().paused = false
 			hide()
@@ -37,11 +39,9 @@ func _on_exit_mouse_exited():
 	exit = false
 
 func _on_options_pressed():
-	pass
-	#if not $AnimationPlayer.is_playing():
-		#$AnimationPlayer.play("fade_out")
-		#await $AnimationPlayer.animation_finished
-		#get_tree().change_scene_to_file("res://scenes/test.tscn")
+	if not $AnimationPlayer.is_playing():
+		var nod = load("res://scenes/options.tscn").instantiate()
+		add_child(nod)
 
 func _on_exit_pressed():
 	if not $AnimationPlayer.is_playing():

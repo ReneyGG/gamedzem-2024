@@ -89,7 +89,7 @@ func _physics_process(_delta):
 		return
 	
 	if progress > 0.0:
-		progress -= 0.1
+		progress -= 0.08
 	
 	if is_on_floor() and current == "run":
 		$DustTrailRun.emitting = true

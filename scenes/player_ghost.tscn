@@ -11,6 +11,14 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_ia2h0")
 
+<<<<<<< Updated upstream
+=======
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pdokx")
+animation = &"fly"
+frame_progress = 0.87131
+
+>>>>>>> Stashed changes
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_rbl6g")

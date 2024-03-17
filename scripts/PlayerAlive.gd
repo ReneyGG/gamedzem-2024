@@ -140,8 +140,8 @@ func _physics_process(_delta):
 			state_machine.travel("idle")
 		velocity.x = lerp(velocity.x,0.0,0.3)
 	
-	if Input.is_action_just_pressed("mecha") and in_range:
-		get_ghost()
+	#if Input.is_action_just_pressed("mecha") and in_range:
+		#get_ghost()
 	
 	if Input.is_action_just_pressed("alive_up") and not ghost_mode and progress > 0.0:
 		jump_buffer_counter = jump_buffer_time
@@ -170,15 +170,6 @@ func _physics_process(_delta):
 	sprite.scale.y = lerp(sprite.scale.y, 1.0, 0.2)
 	move_and_slide()
 	var view = get_viewport_rect().size/2
-
-func get_ghost():
-	if ghost_mode:
-		if ghost_node.get_node("Sprite2D").animation == "haunt" or ghost_node.get_node("Sprite2D").animation == "unhaunt":
-			print(ghost_node.get_node("Sprite2D").animation)
-			return
-		get_parent().delete_ghost()
-	else:
-		get_parent().spawn_ghost()
 
 func death():
 # warning-ignore:return_value_discarded

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d3jv5qscs4yds"]
+[gd_scene load_steps=20 format=3 uid="uid://d3jv5qscs4yds"]
 
 [ext_resource type="PackedScene" uid="uid://bkmjmbu0358qi" path="res://scenes/player_alive.tscn" id="1_2f3dp"]
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_pu1dc"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/platform.gd" id="7_xem74"]
 [ext_resource type="Texture2D" uid="uid://cdukaoegy48q" path="res://assets/boczki.png" id="8_gg1i6"]
 [ext_resource type="AudioStream" uid="uid://c3kjip7nt8fyv" path="res://sfx/opetanie.wav" id="9_qnhvn"]
+[ext_resource type="Texture2D" uid="uid://ggmva1r75fyg" path="res://assets/winieta.png" id="10_eln7l"]
 [ext_resource type="AudioStream" uid="uid://cs0hhfbxcakc2" path="res://sfx/od-opetanie.wav" id="10_vilq5"]
 [ext_resource type="AudioStream" uid="uid://djxbbunbpt73a" path="res://sfx/ambient.wav" id="11_oh44s"]
 [ext_resource type="AudioStream" uid="uid://dniopdyi70su0" path="res://sfx/ambient_pajak.wav" id="12_v4u5p"]
@@ -115,6 +116,17 @@ grow_vertical = 0
 value = 50.0
 rounded = true
 fill_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/CanvasLayer/Control"]
+self_modulate = Color(1, 1, 1, 0.196078)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_eln7l")
+expand_mode = 1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 

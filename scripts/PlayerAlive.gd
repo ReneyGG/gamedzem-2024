@@ -91,15 +91,15 @@ func _physics_process(_delta):
 	if progress > 0.0:
 		progress -= 0.1
 	
-	#if is_on_floor() and current == "run":
-		#$DustTrailRun.emitting = true
-	#else:
-		#$DustTrailRun.emitting = false
+	if is_on_floor() and current == "run":
+		$DustTrailRun.emitting = true
+	else:
+		$DustTrailRun.emitting = false
 	
 	if is_on_floor():
 		if landed:
 			landed = false
-			#$DustTrail.restart()
+			$DustTrail.restart()
 			$Land.pitch_scale = randf_range(0.8,1.2)
 			#$Land.play()
 		cayote_counter = cayote_time
@@ -135,7 +135,7 @@ func _physics_process(_delta):
 	
 	else:
 		#$Run.playing = false
-		#$DustTrailRun.emitting = false
+		$DustTrailRun.emitting = false
 		if is_on_floor():
 			state_machine.travel("idle")
 		velocity.x = lerp(velocity.x,0.0,0.3)
@@ -151,7 +151,7 @@ func _physics_process(_delta):
 	
 	if jump_buffer_counter > 0 and cayote_counter > 0:
 		if is_on_floor():
-			#$DustTrail.restart()
+			$DustTrail.restart()
 			$Jump.pitch_scale = randf_range(0.8,1.2)
 			$Jump.play()
 		velocity.y = -jump_force

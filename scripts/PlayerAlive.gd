@@ -51,7 +51,7 @@ func _input(event: InputEvent) -> void:
 		if state == ROTATING:
 			var current_mouse_pos: Vector2 = get_local_mouse_position().rotated(rotation)
 			var angle = initial_mouse_pos.angle_to(current_mouse_pos)
-			rotation = angle + initial_angle
+			$Sprite2D.rotation = angle + initial_angle
 			if progress < 100.0:
 				var add
 				var mouse_v = event.velocity
@@ -158,7 +158,6 @@ func _physics_process(_delta):
 		jump_buffer_counter = 0
 		cayote_counter = 0
 		sprite.scale = Vector2(0.7, 1.3)
-		#$AnimationPlayer.play("jump")
 		state_machine.travel("jump")
 	
 	if Input.is_action_just_released("alive_up") and not ghost_mode:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmqd3ybuofds1"]
+[gd_scene load_steps=17 format=3 uid="uid://cmqd3ybuofds1"]
 
 [ext_resource type="Script" path="res://scripts/pause.gd" id="1_332cs"]
 [ext_resource type="Texture2D" uid="uid://ckv6bl83wglfd" path="res://assets/pause/tlopauzy.png" id="2_kd4m6"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://b5lqp142xbhs5" path="res://assets/pause/hovopcj.png" id="7_tfmp8"]
 [ext_resource type="Texture2D" uid="uid://bpndcccv1kywg" path="res://assets/pause/out.png" id="8_6auon"]
 [ext_resource type="Texture2D" uid="uid://beggaihwfsi4h" path="res://assets/pause/hovout.png" id="9_16vtw"]
+[ext_resource type="AudioStream" uid="uid://c10gvvdjtl7c8" path="res://sfx/cogs.wav" id="12_j3txd"]
+[ext_resource type="AudioStream" uid="uid://dp0gv3gab50co" path="res://sfx/hover.wav" id="13_xohii"]
+[ext_resource type="AudioStream" uid="uid://dnkpra7yvxfw7" path="res://sfx/klik.wav" id="14_lys5r"]
 
 [sub_resource type="Animation" id="Animation_qoxav"]
 resource_name = "fade_out"
@@ -158,6 +161,17 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_7ev00")
 }
+
+[node name="Corg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_j3txd")
+volume_db = -24.0
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_xohii")
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_lys5r")
+volume_db = -6.0
 
 [connection signal="mouse_entered" from="Control/Back" to="." method="_on_back_mouse_entered"]
 [connection signal="mouse_exited" from="Control/Back" to="." method="_on_back_mouse_exited"]

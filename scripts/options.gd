@@ -14,6 +14,8 @@ func _process(delta):
 
 func _on_menu_button_pressed():
 	if not $AnimationPlayer.is_playing():
+		$Click.play()
+		await $Click.finished
 		get_tree().paused = false
 		$AnimationPlayer.play("fade_out")
 		await $AnimationPlayer.animation_finished
@@ -21,21 +23,31 @@ func _on_menu_button_pressed():
 
 func _on_menu_button_mouse_entered():
 	menu = true
+	$Corg.playing = true
+	$Hover.play()
 
 func _on_menu_button_mouse_exited():
 	menu = false
+	$Corg.playing = false
 
 
 func _on_accept_button_pressed():
+	$Click.play()
+	await $Click.finished
 	queue_free()
 
 func _on_accept_button_mouse_entered():
 	accept = true
+	$Corg.playing = true
+	$Hover.play()
 
 func _on_accept_button_mouse_exited():
 	accept = false
+	$Corg.playing = false
 
 func _on_fullscreen_button_toggled(toggled_on):
+	$Click.play()
+	await $Click.finished
 	if toggled_on:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:

@@ -10,7 +10,7 @@ func _process(delta):
 		points[1] = node2.global_position
 	
 	var v = points[0] - points[1]
-	if abs(v.x) > 300 or abs(v.y) > 300:
+	if abs(v.x) > 400 or abs(v.y) > 400:
 		self.visible = false
 		node1.in_range = false
 	else:

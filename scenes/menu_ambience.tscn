@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2g5ucedd8l3k"]
+
+[ext_resource type="AudioStream" uid="uid://cryj13nah8kcr" path="res://sfx/ambient-menu.wav" id="1_nvb1r"]
+
+[node name="MenuAmbience" type="AudioStreamPlayer"]
+stream = ExtResource("1_nvb1r")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b0u7g1u7l6l8f"]
+[gd_scene load_steps=19 format=3 uid="uid://b0u7g1u7l6l8f"]
 
 [ext_resource type="Texture2D" uid="uid://cxrkms8au3bk1" path="res://assets/options/tloopcji.png" id="1_ibgq5"]
 [ext_resource type="Script" path="res://scripts/options.gd" id="1_u6y58"]
@@ -13,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://vo0i530j36bc" path="res://assets/options/ekranyes.png" id="9_u3oyo"]
 [ext_resource type="Texture2D" uid="uid://bu4xftymupgon" path="res://assets/options/accept.png" id="10_dbknj"]
 [ext_resource type="Texture2D" uid="uid://cafo0cthayw4q" path="res://assets/options/Zasób 6.png" id="11_oldn8"]
+[ext_resource type="AudioStream" uid="uid://c10gvvdjtl7c8" path="res://sfx/cogs.wav" id="14_r6aqu"]
+[ext_resource type="AudioStream" uid="uid://dp0gv3gab50co" path="res://sfx/hover.wav" id="15_ff1fi"]
+[ext_resource type="AudioStream" uid="uid://dnkpra7yvxfw7" path="res://sfx/klik.wav" id="16_olr1c"]
 
 [sub_resource type="Animation" id="Animation_qoxav"]
 resource_name = "fade_out"
@@ -182,6 +185,17 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_7ev00")
 }
+
+[node name="Corg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_r6aqu")
+volume_db = -24.0
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_ff1fi")
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_olr1c")
+volume_db = -6.0
 
 [connection signal="toggled" from="Control/TextureRect3/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
 [connection signal="mouse_entered" from="Control/MenuButton" to="." method="_on_menu_button_mouse_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cn5nn1snu86x6"]
+[gd_scene load_steps=19 format=3 uid="uid://cn5nn1snu86x6"]
 
 [ext_resource type="Texture2D" uid="uid://crxovye5ox2db" path="res://assets/title/tlomenu.png" id="1_kaumq"]
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_ubtrb"]
@@ -12,22 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://budbiyl6fneqt" path="res://assets/title/wymcstond.png" id="8_sdd05"]
 [ext_resource type="Texture2D" uid="uid://bwggcjiycgqof" path="res://assets/title/hov-opcje.png" id="10_q1yl2"]
 [ext_resource type="Texture2D" uid="uid://dp583jdvqgu3n" path="res://assets/title/hov-wyjdz.png" id="12_4csvm"]
-
-[sub_resource type="Animation" id="Animation_ad4nw"]
-resource_name = "fade_out"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Fade:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
+[ext_resource type="AudioStream" uid="uid://c10gvvdjtl7c8" path="res://sfx/cogs.wav" id="13_ylts0"]
+[ext_resource type="AudioStream" uid="uid://dp0gv3gab50co" path="res://sfx/hover.wav" id="14_mdxt4"]
+[ext_resource type="AudioStream" uid="uid://dnkpra7yvxfw7" path="res://sfx/klik.wav" id="15_idevd"]
 
 [sub_resource type="Animation" id="Animation_hnxg0"]
 resource_name = "fade_in"
@@ -43,6 +30,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ad4nw"]
+resource_name = "fade_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lvk40"]
@@ -215,6 +218,17 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_lvk40")
 }
+
+[node name="Corg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_ylts0")
+volume_db = -24.0
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_mdxt4")
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_idevd")
+volume_db = -6.0
 
 [connection signal="mouse_entered" from="Control/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="mouse_exited" from="Control/Play" to="." method="_on_play_mouse_exited"]

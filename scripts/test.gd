@@ -8,6 +8,7 @@ var ghost = preload("res://scenes/player_ghost.tscn")
 var proc := false
 
 func _ready():
+	MenuAmbience.stop()
 	$Pause.hide()
 	$Sfx/Ambient.play()
 	player_alive = get_node("PlayerAlive")
@@ -61,3 +62,11 @@ func spawn_ghost():
 			get_node("Lines").add_child(range_node)
 			range_node.node1 = i
 			range_node.node2 = get_node("PlayerGhost")
+
+func _on_area_2d_body_entered(body):
+	get_tree().change_scene_to_file("res://scenes/winscreen.tscn")
+
+func _on_death_body_entered(body):
+	$squeek.play()
+	await $squeek.finished
+	get_tree().change_scene_to_file("res://scenes/deathscreen.tscn")

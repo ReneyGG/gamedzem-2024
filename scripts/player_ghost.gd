@@ -112,3 +112,6 @@ func frame_freeze(timeScale, duration):
 
 func _on_Freeze_timeout():
 	Engine.time_scale = 1.0
+
+func _on_timer_timeout():
+	$Sprite2D.play("fly")

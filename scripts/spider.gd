@@ -7,10 +7,10 @@ extends Node2D
 var movinghead = 100
 
 func _ready():
-	pass
+	$AnimationPlayer.play("crawl2")
 
 func _physics_process(delta):
-	global_position.y -= 50 * delta
+	global_position.y -= 40 * delta
 
 ##Poruszanie Kolizji
 #func start_tween():
